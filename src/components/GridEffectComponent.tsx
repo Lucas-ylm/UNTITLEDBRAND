@@ -9,21 +9,21 @@ const EffectComponent: React.FC = () => {
   useEffect(() => {
     if (mountRef.current) {
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const camera = new THREE.PerspectiveCamera(110, window.innerWidth / window.innerHeight, 0.1, 1000);
       camera.position.z = 100;
 
       // Set renderer with alpha for transparency
       const renderer = new THREE.WebGLRenderer({ alpha: true });
-      renderer.setClearColor(0x000000, 0); // Fully transparent background
+      renderer.setClearColor(0x000000, 0);
       renderer.setSize(window.innerWidth, window.innerHeight);
       mountRef.current.appendChild(renderer.domElement);
 
-      const geometry = new THREE.PlaneGeometry(200, 200, 150, 150);
+      const geometry = new THREE.PlaneGeometry(200, 200, 100, 100);
 
       const uniforms = {
         resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
         time: { value: 0.0 },
-        radius: { value: 0.2 }
+        radius: { value: 0.23 }
       };
 
       // Use ShaderMaterial for custom shaders
@@ -31,7 +31,9 @@ const EffectComponent: React.FC = () => {
         vertexShader,
         fragmentShader,
         uniforms,
-        wireframe: true // To see the edges of the plane
+        wireframe: true,
+        depthTest: true,
+        depthWrite: true 
       });
 
       const mesh = new THREE.Mesh(geometry, material);

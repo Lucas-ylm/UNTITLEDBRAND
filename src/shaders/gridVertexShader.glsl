@@ -58,8 +58,10 @@ float fractalNoise(vec2 uv, int octaves) {
 }
 
 float computeDisplacement(vec2 uv, float radius, float time) {
-    // Use dynamic center offset
-    vec2 center = vec2(0.5, 0.5) + centerOffset;
+    // Use dynamic center offset with time-based movement, introducing noise in the offset
+    vec2 dynamicOffset = centerOffset + vec2(sin(time * 0.3 + snoise(vec2(time * 0.1, time * 0.15))) * 0.2, 
+                                             cos(time * 0.7 + snoise(vec2(time * 0.2, time * 0.3))) * 0.2);
+    vec2 center = vec2(0.5, 0.5) + dynamicOffset;
 
     // Distance from the center of the plane
     float distance = length(uv - center);
@@ -68,16 +70,16 @@ float computeDisplacement(vec2 uv, float radius, float time) {
     float smoothRadius = smoothstep(radius, radius + 0.1, distance);
 
     // Introduce perturbations in the center to create irregular base shapes
-    uv += snoise(uv * 3.0 + time) * 0.0;
+    uv += snoise(uv * (3.0 + snoise(uv * 2.0 + time * 0.0))) * 0.0;  // Small random perturbations
 
-    // Use fractal noise to create multiple layers of irregularity
-    float noiseValue = fractalNoise(uv * 5.0 + vec2(time * 0.0, time * 0.0), 4);
+    // Use fractal noise to create multiple layers of irregularity with time-varying frequency
+    float noiseValue = fractalNoise(uv * (5.0 + sin(time * 0.0)), 4); // Vary frequency over time
 
     // Displacement based on noise value with an exponential falloff
     float displacement = noiseValue * exp(-distance * 5.0);
 
     // Amplify the displacement near the center
-    float centerAmplification = 1.0 / (1.0 + distance * 10.0);
+    float centerAmplification = 1.0 / (2.0 + distance * 1.0);
 
     // Apply the smooth radius falloff, reducing displacement near edges
     displacement *= (1.0 - smoothRadius);
@@ -88,6 +90,7 @@ float computeDisplacement(vec2 uv, float radius, float time) {
     // Clamp the displacement value to prevent extreme stretching
     return clamp(displacement * 50.0, -15.0, 15.0);
 }
+
 
 void main() {
     vUv = uv;
