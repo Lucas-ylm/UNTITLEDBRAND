@@ -1,0 +1,307 @@
+@use 'sass:math';
+
+/* Import variables */
+@import "_variables";
+
+$cubicOut: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+
+/* START TEMP FIX FOR OVERFLOW */
+.page-accueil section {
+  overflow: hidden;
+}
+
+#wpadminbar {
+  display: none !important;
+}
+
+html {
+  margin-top: 0 !important;
+}
+/* END TEMP FIX FOR OVERFLOW */
+
+:root {
+	--font-text: 'Arimo', Arial, Helvetica, sans-serif;
+	--font-title: 'DM Serif Display', 'Times New Roman', Times, serif;
+	--font-date: 'DM Mono', monospace;
+
+	--section-margin: 100px;
+	--side-padding: 20px;
+
+	--number-top: 60px;
+	--number-gap: 155px;
+
+	--text-smaller: #{math.div(16rem, 16)};
+	--text-small:   #{math.div(18rem, 16)};
+	--text-base:    #{math.div(22rem, 16)};
+	--text-medium:  #{math.div(24rem, 16)};
+	--text-large:   #{math.div(32rem, 16)};
+	--text-larger:  #{math.div(42rem, 16)};
+	--text-largest: #{math.div(52rem, 16)};
+	--text-title:   #{math.div(72rem, 16)};
+}
+
+html {
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+	font-size: 100%;
+	overflow-x: hidden;
+}
+
+*,
+*:after,
+*:before {
+	text-decoration-color: black;
+	box-sizing: inherit;
+}
+
+body {
+	position: relative;
+	overflow-x: hidden;
+	font-family: var(--font-text, "Arimo", Arial, Helvetica, sans-serif);
+	font-size: 1em;
+	margin: 0;
+	color: #000;
+	background-color: #fff;
+	text-wrap: pretty;
+}
+
+#webgl {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+  
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 3vmax;
+}
+  
+.grid-image {
+    display: grid;
+    padding: 6vmax;
+    gap: 3vmax;
+    grid-template-columns: repeat(3, 1fr);
+}
+  
+.container img {
+    max-width: 100%;
+    opacity: 0;
+}
+
+h1, h2, h3, .text--accroche {
+	margin: 0;
+	font-weight: 400;
+}
+
+.content {
+	font-size: var(--text-base);
+	line-height: 150%;
+	margin-right: 10px;
+}
+
+.coucou {
+	color: red;
+	text-decoration: underline;
+}
+
+.podcast, .calendar {
+	&__sub-title {
+		font-size: var(--text-larger);
+		font-weight: bold;
+	}
+}
+
+.button {
+	display: inline-block;
+	font-size: var(--text-base);
+	font-weight: 700;
+	border-bottom: solid 1px black;
+	padding: 0.6em 0.75em; 
+	text-transform: uppercase;
+	margin: 0;
+	position: relative;
+	color: black;
+	cursor: pointer;
+	z-index: 1;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0%;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		background-color: black;
+		z-index: -1;
+	}
+}
+
+.title {
+	color: #000;
+	font-family: var(--font-title);
+	font-size: var(--text-title);
+	font-weight: 400;
+}
+
+.sub-title {
+	color: #000;
+	font-weight: 400;
+	font-size: 2.4375rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	margin-top: 80px;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+p {
+	margin: 0;
+}
+
+figure {
+	margin: 0;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+input[type="checkbox"] {
+	outline: 1px solid black;
+	padding: 10px;
+	background-color: white;
+	appearance: none;
+
+	&:checked {
+		background-image: url('https://mpublicite.fr/wp-content/themes/mpublicite/assets/images/check.svg');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+}
+
+input[type="text"] {
+	position: relative;
+	font-size: var(--text-base);
+	font-weight: 600;
+	text-transform: uppercase;
+	border: none;
+	outline: 0;
+	border-bottom: 1px solid black;
+	padding-bottom: 20px;
+
+	&::placeholder {
+		color: black;
+	}
+}
+@media screen and (max-width: $media-l) {
+	:root {
+		--text-smaller: #{math.div(16rem, 16)};
+		--text-small:   #{math.div(18rem, 16)};
+		--text-base:    #{math.div(20rem, 16)};
+		--text-medium:  #{math.div(22rem, 16)};
+		--text-large:   #{math.div(28rem, 16)};
+		--text-larger:  #{math.div(34rem, 16)};
+		--text-largest: #{math.div(48rem, 16)};
+		--text-title:   #{math.div(64rem, 16)};
+	}
+}
+
+@media screen and (max-width: $media-m) {
+	:root {
+		--section-margin: 80px;
+
+		--text-smaller: #{math.div(14rem, 16)};
+		--text-small:   #{math.div(16rem, 16)};
+		--text-base:    #{math.div(18rem, 16)};
+		--text-medium:  #{math.div(20rem, 16)};
+		--text-large:   #{math.div(24rem, 16)};
+		--text-larger:  #{math.div(30rem, 16)};
+		--text-largest: #{math.div(44rem, 16)};
+		--text-title:   #{math.div(50rem, 16)};
+
+		--number-top: 55px;
+	}
+
+	.sub-title {
+		font-size: 2.2rem;
+		margin-top: 40px;
+	}
+}
+
+
+
+@media screen and (max-width: $media-s) {
+	:root {
+		--section-margin: 50px;
+
+		--text-smaller: #{math.div(13rem, 16)};
+		--text-small:   #{math.div(14rem, 16)};
+		--text-base:    #{math.div(16rem, 16)};
+		--text-medium:  #{math.div(18rem, 16)};
+		--text-large:   #{math.div(22rem, 16)};
+		--text-larger:  #{math.div(26rem, 16)};
+		--text-largest: #{math.div(34rem, 16)};
+		--text-title:   #{math.div(42rem, 16)};
+
+		--number-top: 40px;
+	}
+
+	.sub-title {
+		font-size: 1.75rem;
+		margin-top: 30px;
+		padding-right: 10px;
+	}
+
+	.marques__title-container {
+		img {
+			max-width: 40%;
+		}
+	}
+
+	input[type="text"] {
+		padding-bottom: 10px;
+		width: 100%
+	}
+}
+
+@media screen and (max-width: 530px) {
+	input[type="checkbox"] {
+		padding: 5px;
+	}
+}
+
+@media screen and (max-width: $media-xs) {
+	:root {
+		--section-margin: 40px;
+
+		--text-larger:  #{math.div(24rem, 16)};
+		--text-largest: #{math.div(32rem, 16)};
+		--text-title:   #{math.div(38rem, 16)};
+
+		--number-gap: 0px;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	.button {
+		font-size: var(--text-smaller);
+	}
+
+}
+
+/* Imports */
+
+@import 'grid';
