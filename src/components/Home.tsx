@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 import transition from '../transition';
 import CanvasComponent from './CanvasComponent';
 import EffectComponent from './GridEffectComponent';
-import P5Wrapper from './P5Wrapper';
 
 const Home: React.FC = () => {
   return (
     <div className="container">
-      {/* <P5Wrapper /> */}
       <EffectComponent />
       <CanvasComponent />
       <div className="grid-image">

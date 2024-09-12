@@ -1,7 +1,7 @@
 uniform float time;
 uniform vec2 resolution;
 uniform float radius;
-uniform vec2 centerOffset;  // New uniform for center movement
+uniform vec2 centerOffset;
 
 varying vec2 vUv;
 
@@ -59,8 +59,8 @@ float fractalNoise(vec2 uv, int octaves) {
 
 float computeDisplacement(vec2 uv, float radius, float time) {
     // Use dynamic center offset with time-based movement, introducing noise in the offset
-    vec2 dynamicOffset = centerOffset + vec2(sin(time * 0.3 + snoise(vec2(time * 0.1, time * 0.15))) * 0.2, 
-                                             cos(time * 0.7 + snoise(vec2(time * 0.2, time * 0.3))) * 0.2);
+    vec2 dynamicOffset = centerOffset + vec2(sin(time * 0.3 + snoise(vec2(time * 0.1, time * 0.15))) * 0.05, 
+                                             cos(time * 0.7 + snoise(vec2(time * 0.2, time * 0.3))) * 0.02);
     vec2 center = vec2(0.5, 0.5) + dynamicOffset;
 
     // Distance from the center of the plane
@@ -70,13 +70,13 @@ float computeDisplacement(vec2 uv, float radius, float time) {
     float smoothRadius = smoothstep(radius, radius + 0.1, distance);
 
     // Introduce perturbations in the center to create irregular base shapes
-    uv += snoise(uv * (3.0 + snoise(uv * 2.0 + time * 0.0))) * 0.0;  // Small random perturbations
+    uv += snoise(uv * (6.0 + snoise(uv * 5.0 + time * 0.05))) * 0.005;  // Small random perturbations
 
     // Use fractal noise to create multiple layers of irregularity with time-varying frequency
-    float noiseValue = fractalNoise(uv * (5.0 + sin(time * 0.0)), 4); // Vary frequency over time
+    float noiseValue = fractalNoise(uv * (6.0 + sin(time * 0.005)), 8); // Vary frequency over time
 
     // Displacement based on noise value with an exponential falloff
-    float displacement = noiseValue * exp(-distance * 5.0);
+    float displacement = noiseValue * exp(-distance * 6.0);
 
     // Amplify the displacement near the center
     float centerAmplification = 1.0 / (2.0 + distance * 1.0);
@@ -88,9 +88,8 @@ float computeDisplacement(vec2 uv, float radius, float time) {
     displacement *= centerAmplification;
 
     // Clamp the displacement value to prevent extreme stretching
-    return clamp(displacement * 50.0, -15.0, 15.0);
+    return clamp(displacement * 70.0, -15.0, 15.0);
 }
-
 
 void main() {
     vUv = uv;
