@@ -10,14 +10,14 @@ const EffectComponent: React.FC = () => {
     if (mountRef.current) {
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.01, 10000);
-      camera.position.z = 91;
+      camera.position.z = 101;
   
       const renderer = new THREE.WebGLRenderer({ alpha: true });
       renderer.setClearColor(0x000000, 0);
       renderer.setSize(window.innerWidth, window.innerHeight);
       mountRef.current.appendChild(renderer.domElement);
   
-      const geometry = new THREE.PlaneGeometry(397, 397, 300, 300);
+      const geometry = new THREE.PlaneGeometry(400, 400, 300, 300);
   
       const uniforms = {
         resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
@@ -39,10 +39,10 @@ const EffectComponent: React.FC = () => {
   
       const animate = () => {
         requestAnimationFrame(animate);
-        uniforms.time.value += 0.025;
+        uniforms.time.value += 0.035;
   
         // Random value of radius 
-        uniforms.radius.value = 0.135 + 0.02 * Math.sin(uniforms.time.value);
+        uniforms.radius.value = 0.175 + 0.05 * Math.sin(uniforms.time.value);
   
         renderer.render(scene, camera);
       };

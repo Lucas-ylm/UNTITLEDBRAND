@@ -59,7 +59,7 @@ float fractalNoise(vec2 uv, int octaves) {
 
 float computeDisplacement(vec2 uv, float radius, float time) {
     // Use dynamic center offset with time-based movement, introducing noise in the offset
-    vec2 dynamicOffset = centerOffset + vec2(sin(time * 0.3 + snoise(vec2(time * 0.1, time * 0.15))) * 0.05, 
+    vec2 dynamicOffset = centerOffset + vec2(sin(time * 0.3 + snoise(vec2(time * 0.1, time * 0.15))) * 0.065, 
                                              cos(time * 0.7 + snoise(vec2(time * 0.2, time * 0.3))) * 0.02);
     vec2 center = vec2(0.5, 0.5) + dynamicOffset;
 
