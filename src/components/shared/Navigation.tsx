@@ -73,27 +73,27 @@ export default function Navigation(variants: VariantProps<typeof navigationVaria
       <nav className={navigationVariants(variants)}>
         <ul className={ulVariants(variants)}>
           <li className="relative">
-            <Link href="/montana/" className={linkVariants(variants)}>
-              Montana
-              {pathname.includes("montana") && <NavigationBar intent={variants.intent} />}
+            <Link href="/vol.1/" className={linkVariants(variants)}>
+              vol.1
+              {pathname.includes("vol.1") && <NavigationBar intent={variants.intent} />}
             </Link>
           </li>
           <li className="relative">
-            <Link href="/illinois/" className={linkVariants(variants)}>
-              Illinois
-              {pathname.includes("illinois") && <NavigationBar intent={variants.intent} />}
+            <Link href="/vol.2/" className={linkVariants(variants)}>
+              vol.2
+              {pathname.includes("vol.2") && <NavigationBar intent={variants.intent} />}
             </Link>
           </li>
           <li className="relative">
-            <Link href="/louisiane-mississippi/" className={linkVariants(variants)}>
-              Louisiane & Mississippi
-              {pathname.includes("louisiane-mississippi") && <NavigationBar intent={variants.intent} />}
+            <Link href="/vol.3/" className={linkVariants(variants)}>
+              vol.3
+              {pathname.includes("vol.3") && <NavigationBar intent={variants.intent} />}
             </Link>
           </li>
           <li className="relative">
-            <Link href="/region-de-la-capitale/" className={linkVariants(variants)}>
-              Région de la Capitale
-              {pathname.includes("region-de-la-capitale") && <NavigationBar intent={variants.intent} />}
+            <Link href="/vol.4/" className={linkVariants(variants)}>
+              vol.4
+              {pathname.includes("vol.4") && <NavigationBar intent={variants.intent} />}
             </Link>
           </li>
         </ul>
