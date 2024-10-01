@@ -6,6 +6,18 @@ import * as THREE from 'three';
 import vertexShader from '@/shaders/morph/vertex.glsl';
 import fragmentShader from '@/shaders/morph/fragment.glsl';
 
+const getScreenSizeInInches = (): number => {
+  const screenWidth = window.screen.width;
+  return screenWidth;
+};
+
+const getDynamicSegments = (screenWidth: number, minWidth = 800, maxWidth = 2560, minSegments = 100, maxSegments = 150): number => {
+  const clampedWidth = Math.max(minWidth, Math.min(maxWidth, screenWidth));
+
+  const scale = (clampedWidth - minWidth) / (maxWidth - minWidth);
+  return Math.round(minSegments + scale * (maxSegments - minSegments));
+};
+
 const MorphEffect: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
 
@@ -16,14 +28,21 @@ const MorphEffect: React.FC = () => {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.01, 10000);
-    camera.position.z = 101;
+    camera.position.z = 90;
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setClearColor(0x000000, 0); // Transparent background
+    const renderer = new THREE.WebGLRenderer({ alpha: true, powerPreference: 'high-performance', antialias: true });
+    renderer.setClearColor(0x000000, 0);
     renderer.setSize(window.innerWidth, window.innerHeight);
     mountRef.current.appendChild(renderer.domElement);
 
-    const geometry = new THREE.PlaneGeometry(400, 400, 250, 250);
+    const screenWidth = getScreenSizeInInches();
+
+    const segments = getDynamicSegments(screenWidth);
+
+
+    console.log('segments', segments);
+    const geometry = new THREE.PlaneGeometry(400, 400, segments, segments);
+
     const uniforms = {
       resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
       time: { value: 0.0 },

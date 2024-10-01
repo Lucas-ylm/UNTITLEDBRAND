@@ -10,7 +10,7 @@ const RevealEffect: React.FC = () => {
 
   useEffect(() => {
     scrollRef.current = new Scroll();
-    canvasRef.current = new Canvas();
+    canvasRef.current = new Canvas(scrollRef.current);
 
     const render = () => {
       if (canvasRef.current && scrollRef.current) {

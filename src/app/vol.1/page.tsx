@@ -16,7 +16,17 @@ export default function MontanaPage() {
     <div className="color-montana">
       <MorphEffect />
       <RevealEffect />
+      <p>ccgmkqsnjdognjgmkjnqsf^gnjq^fgnq^fngq^fngôqdnfgo^nqdfgo^nfdqo^gn</p>
+      <p>ccgmkqsnjdognjgmkjnqsf^gnjq^fgnq^fngq^fngôqdnfgo^nqdfgo^nfdqo^gn</p>
+      <p>ccgmkqsnjdognjgmkjnqsf^gnjq^fgnq^fngq^fngôqdnfgo^nqdfgo^nfdqo^gn</p>
+      <p>ccgmkqsnjdognjgmkjnqsf^gnjq^fgnq^fngq^fngôqdnfgo^nqdfgo^nfdqo^gn</p>
+      <p>ccgmkqsnjdognjgmkjnqsf^gnjq^fgnq^fngq^fngôqdnfgo^nqdfgo^nfdqo^gn</p>
       <div className="grid-image">
+        <div>
+          <Link href="/image/product1">
+            <img src="/assets/images/product1.jpg" alt="Image 1" />
+          </Link>
+        </div>
         <div>
           <Link href="/image/product1">
             <img src="/assets/images/product1.jpg" alt="Image 1" />

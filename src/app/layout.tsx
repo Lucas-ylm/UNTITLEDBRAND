@@ -1,7 +1,3 @@
-import AnimateAfterScrolled from "@/components/animations/AnimateAfterScrolled";
-import AnimateScroll from "@/components/animations/AnimateScroll";
-import Header from "@/components/layout/Header";
-import Navigation from "@/components/shared/Navigation";
 import { env } from "@/lib/env";
 import "@/styles/globals.css";
 
@@ -42,17 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <body className={`font-sans ${roboto.variable} ${frankRuhlLibre.variable}`}>
-        <AnimateScroll />
-        <Header
-          partenaireLogo={
-            <img src={`${env.BASE_PATH}/assets/info.svg`} width={28} height={28} alt="Logo" />
-          }
-          partenaireURL="/">
-          <AnimateAfterScrolled>
-            <Navigation intent="header" />
-          </AnimateAfterScrolled>
-        </Header>
-        <main className="min-h-svh pt-[var(--header-height)]">{children}</main>
+        <main className="">{children}</main>
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { Dimensions, Size } from '../types/types';
 import Media from './media';
+import Scroll from './scroll';
 
 export default class Canvas {
   element: HTMLCanvasElement;
@@ -12,8 +13,9 @@ export default class Canvas {
   time: number;
   clock: THREE.Clock;
   medias: Media[];
+  scroll: Scroll;
 
-  constructor() {
+  constructor(scroll: Scroll) {
     this.element = document.getElementById('webgl') as HTMLCanvasElement;
     this.time = 0;
     this.medias = [];
@@ -24,6 +26,8 @@ export default class Canvas {
     this.setSizes();
     this.addEventListeners();
     this.createMedias();
+
+    this.scroll = scroll;
     this.animate();
   }
 
@@ -48,7 +52,7 @@ export default class Canvas {
       pixelRatio: Math.min(2, window.devicePixelRatio),
     };
 
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.element, alpha: true });
+    this.renderer = new THREE.WebGLRenderer({ canvas: this.element, alpha: true, antialias: true, powerPreference: 'high-performance' });
     this.renderer.setSize(this.dimensions.width, this.dimensions.height);
     this.renderer.setPixelRatio(this.dimensions.pixelRatio);
   }
@@ -114,17 +118,18 @@ export default class Canvas {
   }
 
   animate() {
-    requestAnimationFrame(this.animate.bind(this));
-    this.render(window.scrollY);
+    const animateLoop = () => {
+      this.render(this.scroll.getScroll());
+      requestAnimationFrame(animateLoop);
+    };
+    animateLoop();
   }
 
   render(scroll: number) {
     this.time = this.clock.getElapsedTime();
-
     this.medias.forEach((media) => {
       media.updateScroll(scroll);
     });
-
     this.renderer.render(this.scene, this.camera);
   }
 }
