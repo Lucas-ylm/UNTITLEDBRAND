@@ -1,7 +1,0 @@
-<svg viewBox="0 0 22 70" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="#1E2327" stroke-width=".624" fill="none" fill-rule="evenodd">
-        <path stroke-linecap="round" d="M16.466 58.64 11 64.285 5.534 58.64"/>
-        <ellipse cx="11" cy="58.64" rx="10.688" ry="11.048"/>
-        <path stroke-linecap="round" d="M11 .307V58.64"/>
-    </g>
-</svg>

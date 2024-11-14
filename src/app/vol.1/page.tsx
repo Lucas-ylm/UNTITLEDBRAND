@@ -3,11 +3,11 @@ import RevealEffect from "@/components/three/RevealEffect";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Montana",
+  title: " ",
   description:
-    "L’État du Montana est aussi connu sous le nom de “Big Sky Country”. Paysages époustouflants, nature sauvage lovée dans des parcs nationaux parmi les plus spectaculaires…",
+    " ",
   openGraph: {
-    images: "/social-montana-min.jpg",
+    images: " ",
   },
 };
 
@@ -16,11 +16,6 @@ export default function MontanaPage() {
     <div className="color-montana">
       <MorphEffect />
       <RevealEffect />
-      <p>ccgmkqsnjdognjgmkjnqsf^gnjq^fgnq^fngq^fngôqdnfgo^nqdfgo^nfdqo^gn</p>
-      <p>ccgmkqsnjdognjgmkjnqsf^gnjq^fgnq^fngq^fngôqdnfgo^nqdfgo^nfdqo^gn</p>
-      <p>ccgmkqsnjdognjgmkjnqsf^gnjq^fgnq^fngq^fngôqdnfgo^nqdfgo^nfdqo^gn</p>
-      <p>ccgmkqsnjdognjgmkjnqsf^gnjq^fgnq^fngq^fngôqdnfgo^nqdfgo^nfdqo^gn</p>
-      <p>ccgmkqsnjdognjgmkjnqsf^gnjq^fgnq^fngq^fngôqdnfgo^nqdfgo^nfdqo^gn</p>
       <div className="grid-image">
         <div>
           <Link href="/image/product1">
