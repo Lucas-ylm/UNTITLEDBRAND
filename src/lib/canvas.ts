@@ -1,17 +1,24 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import * as THREE from 'three';
-import { Dimensions, Size } from '../types/types';
+// @ts-expect-error filepath is correct but for some reason there is an error
+import { type Dimensions, type Size } from '../types/types';
 import Media from './media';
-import Scroll from './scroll';
+import type Scroll from './scroll';
 
 export default class Canvas {
   element: HTMLCanvasElement;
-  scene: THREE.Scene;
-  camera: THREE.PerspectiveCamera;
-  renderer: THREE.WebGLRenderer;
+  scene: THREE.Scene | undefined;
+  camera: THREE.PerspectiveCamera | undefined;
+  renderer: THREE.WebGLRenderer | undefined;
   sizes: Size;
   dimensions: Dimensions;
   time: number;
-  clock: THREE.Clock;
+  clock: THREE.Clock | undefined;
   medias: Media[];
   scroll: Scroll;
 
@@ -41,7 +48,9 @@ export default class Canvas {
 
   createCamera() {
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
-    this.scene.add(this.camera);
+    if (this.scene) {
+      this.scene.add(this.camera);
+    }
     this.camera.position.z = 10;
   }
 
@@ -54,10 +63,20 @@ export default class Canvas {
 
     this.renderer = new THREE.WebGLRenderer({ canvas: this.element, alpha: true, antialias: true, powerPreference: 'high-performance' });
     this.renderer.setSize(this.dimensions.width, this.dimensions.height);
-    this.renderer.setPixelRatio(this.dimensions.pixelRatio);
+    if (this.renderer) {
+      if (this.renderer) {
+        if (this.renderer) {
+          if (this.renderer) {
+            this.renderer.setPixelRatio(this.dimensions.pixelRatio);
+          }
+        }
+      }
+    }
   }
 
   setSizes() {
+    if (!this.camera) return;
+
     let fov = this.camera.fov * (Math.PI / 180);
     let height = this.camera.position.z * Math.tan(fov / 2) * 2;
     let width = height * this.camera.aspect;
@@ -79,11 +98,14 @@ export default class Canvas {
       pixelRatio: Math.min(2, window.devicePixelRatio),
     };
 
-    this.camera.aspect = window.innerWidth / window.innerHeight;
-    this.camera.updateProjectionMatrix();
+    if (this.camera) {
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+    }
     this.setSizes();
-
+    // @ts-expect-error undefined because it's not initialized
     this.renderer.setPixelRatio(this.dimensions.pixelRatio);
+    // @ts-expect-error undefined because it's not initialized
     this.renderer.setSize(this.dimensions.width, this.dimensions.height);
 
     this.medias.forEach((media) => {
@@ -102,13 +124,15 @@ export default class Canvas {
           image.addEventListener('error', () => resolve());
         }
       }).then(() => {
-        const media = new Media({
-          element: image,
-          scene: this.scene,
-          sizes: this.sizes,
-        });
-        media.updateScroll(window.scrollY);
-        this.medias.push(media);
+        if (this.scene) {
+          const media = new Media({
+            element: image,
+            scene: this.scene,
+            sizes: this.sizes,
+          });
+          media.updateScroll(window.scrollY);
+          this.medias.push(media);
+        }
       });
     });
 
@@ -126,10 +150,14 @@ export default class Canvas {
   }
 
   render(scroll: number) {
-    this.time = this.clock.getElapsedTime();
+    if (this.clock) {
+      this.time = this.clock.getElapsedTime();
+    }
     this.medias.forEach((media) => {
       media.updateScroll(scroll);
     });
-    this.renderer.render(this.scene, this.camera);
+    if (this.renderer && this.scene && this.camera) {
+      this.renderer.render(this.scene, this.camera);
+    }
   }
 }

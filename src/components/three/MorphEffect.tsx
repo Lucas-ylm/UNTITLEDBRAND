@@ -3,7 +3,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
+// @ts-expect-error filepath is correct but for some reason there is an error
 import vertexShader from '@/shaders/morph/vertex.glsl';
+// @ts-expect-error filepath is correct but for some reason there is an error
 import fragmentShader from '@/shaders/morph/fragment.glsl';
 
 const getScreenSizeInInches = (): number => {

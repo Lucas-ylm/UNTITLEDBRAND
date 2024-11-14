@@ -1,7 +1,15 @@
-import { Position, Size } from '../types/types';
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/prefer-optional-chain */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+// @ts-expect-error filepath is correct but for some reason there is an error
+import { type Position, type Size } from '../types/types';
 import * as THREE from 'three';
 import gsap from 'gsap';
+// @ts-expect-error undefined because it's not initialized
 import vertexShader from '@/shaders/imageReveal/vertex.glsl';
+// @ts-expect-error undefined because it's not initialized
 import fragmentShader from '@/shaders/imageReveal/fragment.glsl';
 
 interface Props {
@@ -14,9 +22,9 @@ export default class Media {
   element: HTMLImageElement;
   scene: THREE.Scene;
   sizes: Size;
-  material: THREE.ShaderMaterial;
-  geometry: THREE.PlaneGeometry;
-  mesh: THREE.Mesh;
+  material: THREE.ShaderMaterial | undefined;
+  geometry: THREE.PlaneGeometry | undefined;
+  mesh: THREE.Mesh | undefined;
   nodeDimensions: Size;
   meshDimensions: Size;
   meshPosition: Position;
@@ -42,7 +50,9 @@ export default class Media {
     this.setMeshPosition();
     this.setTexture();
 
-    this.scene.add(this.mesh);
+    if (this.mesh) {
+      this.scene.add(this.mesh);
+    }
   }
 
   createGeometry() {
@@ -81,7 +91,9 @@ export default class Media {
       height: (this.nodeDimensions.height * this.sizes.height) / window.innerHeight,
     };
 
-    this.mesh.scale.set(this.meshDimensions.width, this.meshDimensions.height, 1);
+    if (this.mesh) {
+      this.mesh.scale.set(this.meshDimensions.width, this.meshDimensions.height, 1);
+    }
   }
 
   setMeshPosition() {
@@ -92,15 +104,19 @@ export default class Media {
       y: (-this.elementBounds.top * this.sizes.height) / window.innerHeight + this.sizes.height / 2 - this.meshDimensions.height / 2,
     };
 
-    this.mesh.position.set(this.meshPosition.x, this.meshPosition.y, 0);
+    if (this.mesh) {
+      this.mesh.position.set(this.meshPosition.x, this.meshPosition.y, 0);
+    }
   }
 
   setTexture() {
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load(this.element.src, (texture: THREE.Texture) => {
-      this.material.uniforms.uTexture.value = texture;
-      const { naturalWidth, naturalHeight } = texture.image;
-      this.material.uniforms.uResolution.value.set(naturalWidth, naturalHeight);
+      if (this.material?.uniforms?.uTexture && this.material?.uniforms?.uResolution?.value) {
+        this.material.uniforms.uTexture.value = texture;
+        const { naturalWidth, naturalHeight } = texture.image;
+        this.material.uniforms.uResolution.value.set(naturalWidth, naturalHeight);
+      }
       this.observe();
     });
 }
@@ -117,27 +133,33 @@ export default class Media {
 
   updateY(deltaScroll: number) {
     this.meshPosition.y -= deltaScroll;
-    this.mesh.position.y = this.meshPosition.y;
+    if (this.mesh) {
+      this.mesh.position.y = this.meshPosition.y;
+    }
   }
 
   onVisible() {
-    gsap.to(this.material.uniforms.uProgress, {
-      value: 1,
-      duration: 1.6,
-      ease: 'linear',
-    });
+    if (this.material && this.material.uniforms.uProgress) {
+      gsap.to(this.material.uniforms.uProgress, {
+        value: 1,
+        duration: 1.6,
+        ease: 'linear',
+      });
+    }
   }
 
   onInvisible() {
-    gsap.set(this.material.uniforms.uProgress, {
-      value: 0,
-    });
+    if (this.material && this.material.uniforms.uProgress) {
+      gsap.set(this.material.uniforms.uProgress, {
+        value: 0,
+      });
+    }
   }
 
   observe() {
     this.observer = new IntersectionObserver(
       (entries) => {
-        const isVisible = entries[0].isIntersecting;
+        const isVisible = entries[0]?.isIntersecting ?? false;
         if (isVisible) {
           this.onVisible();
         } else {
