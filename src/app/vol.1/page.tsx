@@ -1,3 +1,4 @@
+import AnimateReveal from "@/components/animations/AnimateReveal";
 import MorphEffect from "@/components/three/MorphEffect";
 import RevealEffect from "@/components/three/RevealEffect";
 import Link from "next/link";
@@ -16,6 +17,7 @@ export default function MontanaPage() {
     <div className="color-montana">
       <MorphEffect />
       <RevealEffect />
+      <AnimateReveal />
       <div className="grid-image">
         <div>
           <Link href="/image/product1">
@@ -27,6 +29,9 @@ export default function MontanaPage() {
             <img src="/assets/images/product1.jpg" alt="Image 1" />
           </Link>
         </div>
+      </div>
+      <div className="lol">
+        <p>hgeyyyyy</p>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ const getScreenSizeInInches = (): number => {
   return screenWidth;
 };
 
-const getDynamicSegments = (screenWidth: number, minWidth = 800, maxWidth = 2560, minSegments = 50, maxSegments = 200): number => {
+const getDynamicSegments = (screenWidth: number, minWidth = 200, maxWidth = 2560, minSegments = 30, maxSegments = 90): number => {
   const clampedWidth = Math.max(minWidth, Math.min(maxWidth, screenWidth));
 
   const scale = (clampedWidth - minWidth) / (maxWidth - minWidth);
@@ -43,7 +43,7 @@ const MorphEffect: React.FC = () => {
 
 
     console.log('segments', segments);
-    const geometry = new THREE.PlaneGeometry(400, 400, segments, segments);
+    const geometry = new THREE.PlaneGeometry(100, 100, segments, segments);
 
     const uniforms = {
       resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },

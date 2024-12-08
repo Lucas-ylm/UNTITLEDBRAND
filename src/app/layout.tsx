@@ -1,5 +1,5 @@
 import { env } from "@/lib/env";
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 
 import { Roboto, Frank_Ruhl_Libre } from "next/font/google";
 

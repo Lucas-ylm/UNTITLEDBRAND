@@ -1,0 +1,40 @@
+:root {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  height: unset;
+  overflow: hidden;
+}
+
+#webgl {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+  
+.grid-image {
+    display: grid;
+    padding: 6vmax;
+    opacity: 0;
+    gap: 3vmax;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+p, h1, h2, h3 {
+  .-parent {
+    height: 0;
+    visibility: hidden;
+  }
+  
+  .-inner {
+    visibility: visible;
+  }
+}
