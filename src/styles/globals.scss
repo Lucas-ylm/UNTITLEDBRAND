@@ -19,14 +19,6 @@
   left: 0;
   pointer-events: none;
 }
-  
-.grid-image {
-    display: grid;
-    padding: 6vmax;
-    opacity: 0;
-    gap: 3vmax;
-    grid-template-columns: repeat(3, 1fr);
-}
 
 p, h1, h2, h3 {
   .-parent {

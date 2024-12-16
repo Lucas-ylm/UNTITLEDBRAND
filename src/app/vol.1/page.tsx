@@ -12,27 +12,21 @@ export const metadata = {
   },
 };
 
-export default function MontanaPage() {
+export default function vol1() {
   return (
     <div className="color-montana">
       <MorphEffect />
       <RevealEffect />
       <AnimateReveal />
-      <div className="grid-image">
-        <div>
+      <div className="w-full flex flex-wrap items-center">
           <Link href="/image/product1">
             <img src="/assets/images/product1.jpg" alt="Image 1" />
           </Link>
-        </div>
-        <div>
           <Link href="/image/product1">
             <img src="/assets/images/product1.jpg" alt="Image 1" />
           </Link>
-        </div>
       </div>
-      <div className="lol">
-        <p>hgeyyyyy</p>
-      </div>
+      <p>hgeyyyyy</p>
     </div>
   );
 }
