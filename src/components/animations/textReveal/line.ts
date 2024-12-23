@@ -106,11 +106,11 @@ export class Line extends MyDisplay {
       const t = line ? line.charAt(charIndex) : '';
   
       if (isText) {
-        this._cachedColor.setHSL(Util.map(i, 0, 1, 0, num - 1), 1, 0.5);
+        this._cachedColor.setHSL(Util.map(i, 0, 1, 0, num - 1), 0.1, 0.5);
         str += `<span style="color: #000000; background-color: ${this._cachedColor.getStyle()};">${t}</span>`;
       } else {
         if (i === 0) {
-          this._cachedColor.setHSL(Util.map(i, 0, 1, 0, num - 1), 1, 0.5);
+          this._cachedColor.setHSL(Util.map(i, 0, 1, 0, num - 1), 1, 0);
           str += `<span style="color: #FFFFFF; background-color: ${this._cachedColor.getStyle()};">${t}</span>`;
         } else {
           str += t;
