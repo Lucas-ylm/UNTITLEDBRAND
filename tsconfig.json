@@ -16,7 +16,7 @@
     "lib": ["dom", "dom.iterable", "ES2022"],
     "noEmit": true,
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "jsx": "preserve",
     "plugins": [
       {
@@ -28,17 +28,13 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    },
+    }
   },
   "include": [
     ".eslintrc.cjs",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "?src/app/vol.1/page.tsx",
-    "?src/app/vol.2/page.tsx",
-    "?src/app/vol.3/page.tsx",
-    "?src/app/vol.4/page.tsx",
     "**/*.cjs",
     "**/*.js",
     ".next/types/**/*.ts",

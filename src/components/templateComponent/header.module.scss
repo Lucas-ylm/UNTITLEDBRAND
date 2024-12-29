@@ -1,0 +1,57 @@
+@use "/src/styles/colors";
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  .first {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50.45px;
+    border-top: 3px solid colors.$blue;
+    border-bottom: 1px solid colors.$grey;
+    padding-inline: 6.25vw;
+
+    .home {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      .svgHome {
+        height: 1.9rem;
+        width: 1.9rem;
+      }
+      .svgLemonde {
+        height: 2rem;
+        width: 9.33rem;
+      }
+    }
+  }
+  .second {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 49.55px;
+    border-bottom: 1px solid colors.$grey;
+    padding-inline: 6.25vw;
+    .logoBrand {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+
+      .title {
+        font-family: var(--font-roboto);
+        font-size: 1.3rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+  }
+}

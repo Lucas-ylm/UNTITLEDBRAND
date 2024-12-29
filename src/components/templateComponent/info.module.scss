@@ -1,0 +1,52 @@
+@use "/src/styles/colors";
+@use "/src/styles/breakpoints";
+
+.info {
+  appearance: none;
+  background-color: transparent;
+  border: unset;
+  padding-inline: unset;
+  .svgInfo {
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+  .description {
+    display: none;
+    font-family: var(--font-roboto);
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+  }
+  &:hover {
+    .description {
+      display: block;
+      position: absolute;
+      top: 4.75rem;
+      right: 2.2vw;
+      max-width: 20rem;
+      background-color: #fff;
+      color: colors.$black;
+      border: 1px solid colors.$grey;
+      padding: 1.5rem 2.4rem;
+      font-size: 1.2rem;
+      z-index: 1;
+      font-family: "Roboto", sans-serif;
+      text-align: left;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      @media (min-width: breakpoints.$media-s) {
+        right: 5.2vw;
+      }
+      &::before {
+        content: " ";
+        position: absolute;
+        right: 1.6rem;
+        top: -0.8rem;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 8px 8px 8px;
+        border-color: transparent transparent #fff transparent;
+        z-index: 100;
+      }
+    }
+  }
+}

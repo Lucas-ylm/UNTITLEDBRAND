@@ -1,0 +1,150 @@
+@use "sass:math";
+
+$max-grid-columns: 12;
+$max-small-grid-columns: 12;
+$max-grid-rows: 12;
+$max-small-grid-rows: 12;
+
+$media-xl: 1560px;
+$media-l: 1200px;
+$media-m: 1024px;
+$media-s: 840px;
+$media-xs: 480px;
+
+@mixin columns($prefix, $max-columns) {
+  @for $i from 1 through $max-columns {
+    .col#{$prefix}#{$i} {
+      --grid-cols: #{$i};
+      grid-column-end: span #{$i};
+    }
+
+    .col#{$prefix}start-#{$i} {
+      grid-column-start: #{$i};
+    }
+  }
+
+  .col#{$prefix}start-auto {
+    grid-column-start: auto;
+  }
+}
+
+@mixin rows($prefix, $max-rows) {
+  @for $i from 1 through $max-rows {
+    .grid-row#{$prefix}#{$i} {
+      grid-row: #{$i};
+    }
+
+    .grid-row#{$prefix}start-#{$i} {
+      grid-row-start: #{$i};
+    }
+
+    .grid-row#{$prefix}end-#{$i} {
+      grid-row-end: #{$i};
+    }
+  }
+
+  .grid-row#{$prefix}start-auto {
+    grid-row-start: auto;
+  }
+
+  .grid-row#{$prefix}end-auto {
+    grid-row-end: auto;
+  }
+
+  @for $start from 1 through $max-rows {
+    @for $end from $start + 1 through $max-rows {
+      .grid-row#{$prefix}#{$start}-#{$end} {
+        grid-row: #{$start} / #{$end};
+      }
+    }
+  }
+}
+
+:root {
+  --grid-gap: #{math.div(20, 1920) * 100vw};
+  --grid-cols: #{$max-grid-columns};
+}
+
+@mixin grid-gap($gap) {
+  column-gap: #{$gap};
+}
+
+@mixin row-gap($gap) {
+  row-gap: #{$gap};
+}
+
+.grid {
+  width: 100%;
+  display: grid;
+  @include grid-gap(var(--grid-gap, 0));
+  grid-template-columns: repeat(
+    var(--grid-cols),
+    calc((100% - var(--grid-gap, 0) * (var(--grid-cols) - 1)) / var(--grid-cols))
+  );
+  grid-template-rows: repeat(auto-fit, 1fr);
+  border-collapse: collapse;
+  & > * {
+    grid-column-start: 1;
+    grid-column-end: calc(var(--grid-cols) + 1);
+    grid-row: auto;
+  }
+
+  &.marged {
+    width: unset;
+    padding-left: 20px;
+    padding-right: 20px;
+    @media (min-width: $media-s) {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+}
+
+.grid--row-gap-custom {
+  @include row-gap(20px);
+}
+
+.grid--gap-custom {
+  @include grid-gap(10px);
+}
+
+.grid--center {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid-flow-col {
+  grid-auto-flow: column;
+}
+
+@include columns("-", $max-grid-columns);
+@include rows("-", $max-grid-rows);
+
+@media (min-width: $media-xl) {
+  @include columns("-xl-", $max-grid-columns);
+  @include rows("-xl-", $max-grid-rows);
+}
+
+@media (max-width: $media-l) {
+  @include columns("-l-", $max-grid-columns);
+  @include rows("-l-", $max-grid-rows);
+}
+
+@media (max-width: $media-m) {
+  :root {
+    --grid-cols: #{$max-small-grid-columns};
+  }
+  @include columns("-m-", $max-small-grid-columns);
+  @include rows("-m-", $max-small-grid-rows);
+}
+
+@media (max-width: $media-s) {
+  @include columns("-s-", $max-small-grid-columns);
+  @include rows("-s-", $max-small-grid-rows);
+}
+
+@media (max-width: $media-xs) {
+  @include columns("-xs-", $max-small-grid-columns);
+  @include rows("-xs-", $max-small-grid-rows);
+}

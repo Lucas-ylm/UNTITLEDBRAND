@@ -1,0 +1,42 @@
+@use "../../styles/colors";
+@use "../../styles/breakpoints";
+
+.cookies {
+  font-family: var(--font-frank);
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  color: colors.$black;
+  margin-block: 2rem;
+  padding-inline: 2.8rem;
+  @media (min-width: breakpoints.$media-m) {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+  > p {
+    text-align: center;
+    margin-bottom: 1.6rem;
+  }
+  .redirection {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    justify-content: center;
+    padding-bottom: 45px;
+
+    .manage,
+    .legal {
+      text-decoration: underline;
+      font-family: var(--font-frank);
+      font-size: 1.2rem;
+      line-height: 1.8rem;
+      color: colors.$black;
+      @media (min-width: breakpoints.$media-m) {
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+      }
+    }
+    .manage {
+      cursor: pointer;
+    }
+  }
+}

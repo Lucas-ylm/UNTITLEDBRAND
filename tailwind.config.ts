@@ -1,30 +1,56 @@
 import { type Config } from "tailwindcss";
 
 export default {
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: ["./src/**/*.tsx"],
   theme: {
-    colors: {
-      white: "#FFFFFF",
-      dark: "#1e2327",
-      light: "#f0efe4",
-      montana: "#0f6667",
-      illinois: "#18181b",
-      louisiane: "#6e775b",
-      capital: "#03133e",
-      primary: "var(--primary-color)",
-      current: "var(--current-color)",
-      transparent: "transparent",
-    },
-    fontFamily: {
-      sans: ["var(--font-sans)", "Helvetica", "Arial", "sans-serif"],
-      serif: ["var(--font-serif)", "Georgia", "serif"],
+    screens: {
+      base: "20px",
+      xxxs: "280px",
+      xxxsss: "300px",
+      xxss: "322px",
+      xxs: "375px",
+      xss: "390px",
+      sx: "420px",
+      xs: "475px",
+      ssm: "500px",
+      sm: "571px",
+      s: "735px",
+      smd: "850px",
+      md: "850px",
+      lg: "1024px",
+      lg2: "1188px",
+      xl: "1280px",
+      "2xl": "1536px",
+      "3xl": "1935px",
     },
     extend: {
-      screens: {
-        xs: "374px",
+      height: {
+        fill: "-webkit-fill-available",
       },
-      width: {
-        "100": "calc(100vw - 20px)",
+      aspectRatio: {
+        "4/3": "4 / 3",
+      },
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        gold_idf: "var(--gold_idf)",
+        blue_jo: "var(--blue_jo)",
+        gold_jo: "var(--gold_jo)",
+        blue_idf: "var(--blue_idf)",
+        red_idf: "var(--red_idf)",
+        pink: "var(--pink)",
+        light_blue: "var(--light_blue)",
+        "brown-light": "var(--brown-light)",
+        "cream-light": "var(--cream-light)",
+        "cream-lighter": "var(--cream-lighter)",
+        "yellow-light": "var(--yellow-light)",
+      },
+      fontFamily: {
+        bitter: ["var(--font-bitter)"],
+        roboto: ["var(--font-roboto)"],
+      },
+      zIndex: {
+        5: "5",
       },
     },
   },

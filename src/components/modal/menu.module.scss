@@ -1,0 +1,50 @@
+.wrapper {
+  position: fixed;
+  top: 10rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 25;
+  background-color: rgba($color: #000, $alpha: 0.2);
+
+  .drawer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 36rem;
+    height: 100vh;
+    overflow: hidden;
+
+    .grad {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      padding-top: 5%;
+      background: white;
+
+      .button {
+        width: 100%;
+        inset: 0;
+        cursor: grab;
+        touch-action: none;
+        background-color: transparent;
+        appearance: none;
+        border: unset;
+        padding: 0;
+        &:active {
+          cursor: grabbing;
+        }
+      }
+    }
+    .content {
+      background-color: #fff;
+      position: relative;
+      z-index: 11;
+      height: 100%;
+      overflow-x: scroll;
+      padding-inline: 2rem;
+    }
+  }
+}
