@@ -4,8 +4,8 @@ import { useEffect, useRef, useCallback } from 'react';
 import { Line } from './textReveal/line';
 
 const VISIBILITY_CHECK_INTERVAL = 100;
-const SHOW_DELAY = 500;
-const OBSERVER_THRESHOLD = 0.4;
+const SHOW_DELAY = 250;
+const OBSERVER_THRESHOLD = 0.2;
 
 const AnimateReveal: React.FC = () => {
   const linesRef = useRef<Line[]>([]);

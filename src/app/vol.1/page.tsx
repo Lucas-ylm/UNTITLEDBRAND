@@ -21,11 +21,20 @@ export default function vol1() {
       <div className="w-full object-contain flex flex-wrap gap-[30px] justify-center">
           <Link href="/image/product1">
             <img className="" src="/assets/images/product1.jpg" alt="Image" />
+            <p>PRODUCT</p>
           </Link>
           <Link href="/image/product1">
             <img src="/assets/images/product1.jpg" alt="Image" />
+            <p>PRODUCT</p>
           </Link>
       </div>
+      <p>hgeyyyyy</p>
+      <p>hgeyyyyy</p>
+      <p>hgeyyyyy</p>
+      <p>hgeyyyyy</p>
+      <p>hgeyyyyy</p>
+      <p>hgeyyyyy</p>
+      <p>hgeyyyyy</p>
       <p>hgeyyyyy</p>
     </div>
   );
