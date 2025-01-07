@@ -13,7 +13,7 @@ const getScreenSizeInInches = (): number => {
   return screenWidth;
 };
 
-const getDynamicSegments = (screenWidth: number, minWidth = 200, maxWidth = 2560, minSegments = 30, maxSegments = 90): number => {
+const getDynamicSegments = (screenWidth: number, minWidth = 200, maxWidth = 2560, minSegments = 30, maxSegments = 60): number => {
   const clampedWidth = Math.max(minWidth, Math.min(maxWidth, screenWidth));
 
   const scale = (clampedWidth - minWidth) / (maxWidth - minWidth);

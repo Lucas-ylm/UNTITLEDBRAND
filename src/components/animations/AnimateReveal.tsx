@@ -1,4 +1,5 @@
-"use client";
+'use client';
+
 import type React from 'react';
 import { useEffect, useRef, useCallback } from 'react';
 import { Line } from './textReveal/line';
@@ -14,6 +15,7 @@ const AnimateReveal: React.FC = () => {
   const observerRef = useRef<IntersectionObserver>();
 
   const isElementInViewport = useCallback((el: Element) => {
+    if (typeof window === 'undefined') return false;
     const rect = el.getBoundingClientRect();
     const windowHeight = window.innerHeight ?? document.documentElement.clientHeight;
     const windowWidth = window.innerWidth ?? document.documentElement.clientWidth;
@@ -27,6 +29,7 @@ const AnimateReveal: React.FC = () => {
   }, []);
 
   const checkVisibility = useCallback(() => {
+    if (typeof window === 'undefined') return;
     requestAnimationFrame(() => {
       linesRef.current.forEach((line) => {
         if (line?.el instanceof Element && !isElementInViewport(line.el)) {
